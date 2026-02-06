@@ -1,0 +1,87 @@
+Autonomous Insurance Claims Processing Agent
+
+Overview
+This project is a lightweight AI-based agent that processes FNOL (First Notice of Loss) insurance documents.
+It extracts key information from PDF/text files, checks for missing or inconsistent data, and automatically routes the claim to the correct workflow.
+The system is designed for quick automation of basic insurance claim triage.
+
+Features
+Extracts important claim fields from FNOL documents
+Detects missing mandatory fields
+Applies routing rules automatically
+Flags suspicious or fraud-related descriptions
+Outputs structured JSON result
+Runs easily on Google Colab
+
+Tech Stack
+Python
+Regex (re) – Text pattern extraction
+pdfplumber – PDF text extraction
+JSON – Structured output
+Google Colab – Execution environment
+
+Approach
+1. Document Input
+User uploads FNOL document (PDF or text file).
+
+2. Text Extraction
+PDF is converted into raw text using pdfplumber.
+
+3. Field Extraction
+Regex patterns are used to identify:
+Policy Number
+Date of Loss
+Location
+Description of Accident
+Estimated Damage
+Claim Type (if available)
+
+4. Missing Field Detection
+Checks which required fields are empty or not found.
+
+5. Routing Logic
+Rules applied:
+Damage < 25,000 → Fast Track
+Missing mandatory field → Manual Review
+Keywords like fraud, staged, inconsistent → Investigation Flag
+Injury claim → Specialist Queue
+Otherwise → Standard Processing
+            
+6. JSON Output
+Final result is returned in structured format:
+{
+  extractedFields: {},
+  missingFields: [],
+  recommendedRoute: "",
+  reasoning: ""
+}
+
+Steps to Run (Google Colab)
+Step 1 – Open Colab
+Go to: https://colab.research.google.com
+
+Step 2 – Install Dependency
+!pip install pdfplumber
+
+Step 3 – Upload FNOL PDF
+from google.colab import files
+uploaded = files.upload()
+
+Step 4 – Run the Script
+Execute all provided Python cells in order:
+Import libraries
+Read PDF
+Extract fields
+Apply routing rules
+Print JSON output
+
+Project Structure
+insurance-claims-agent/
+│
+├── main.ipynb          # Google Colab notebook
+├── sample_data/        # Example FNOL PDFs
+├── README.md           # Project documentation
+└── requirements.txt    # Dependencies
+
+
+            
