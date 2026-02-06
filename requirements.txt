@@ -1,0 +1,10 @@
+pdfplumber==0.11.0
+pypdfium2==4.30.0
+Pillow==10.3.0
+regex==2024.5.15
+
+
+pdfplumber – Extract text from PDF FNOL documents
+pypdfium2 – Backend dependency used by pdfplumber for PDF rendering
+Pillow – Image processing support (useful if PDFs contain images)
+regex – Advanced regular expression matching for field extraction
